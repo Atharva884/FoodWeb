@@ -1,0 +1,735 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
+*{
+    padding: 0; margin: 0;
+    box-sizing: border-box;
+    border: none; outline: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: .2s linear;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 4rem;
+
+    &::-webkit-scrollbar{
+        width: 1.2rem;
+    }
+    &::-webkit-scrollbar-track{
+        background: #192a56;
+    }
+    &::-webkit-scrollbar-thumb{
+        background: #27ae60;
+    }
+}
+
+$green: #27ae60;
+$black: #192a56;
+$light-color: #666;
+$box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
+$white: #fff;
+$light-bg: #eee;
+
+
+// Utility Clases
+.fa-times{
+    transform: rotate(360deg);
+}
+.heading{
+    span{
+        font-size: 2rem;
+        color: #27ae60;
+        margin: 0.3rem 0;
+        display: block;
+        text-align: center;
+        font-weight: 700;
+    }
+    h2{
+        text-transform: uppercase;
+        font-size: 2.5rem;
+        color: $black;
+        text-align: center;
+    }
+}
+section{
+    padding: 2rem 9%;
+}
+@mixin btn($par1) {
+    padding: $par1;
+    color: $white;
+    background: $black;
+    border-radius: .3rem;
+    cursor: pointer;
+    margin: .5rem .5rem;
+
+    &:hover{
+        letter-spacing: .1rem;
+        background: $green;
+        color: $white;
+    }
+}
+
+
+// Header Section CSS
+header.head{
+    position: fixed;
+    padding: 2rem 7%;
+    top: 0; left: 0; right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: $white;
+    z-index: 10000;
+
+    a.logo{
+        font-size: 2.4rem;
+        color: $black;
+        font-weight: 600;
+
+        i{
+            color: $green;
+        }
+    }
+
+    .navbar a{
+        padding: .5rem 1.5rem;
+        font-size: 1.6rem;
+        color: $light-color;
+        border-radius: .3rem;
+
+        &:hover{
+            background: $green;
+            color: $white;
+        }
+    }
+    .navbar a.active{
+        background: $green;
+        color: $white;
+    }
+
+    .nav-items{
+        display: inline-flex;
+        gap: .5rem;
+
+        .menu-bar{
+            display: none;
+        }
+        .items{
+            padding: 1.2rem 1.3rem;
+            background: #eee;
+            border-radius: 50%;
+            cursor: pointer;
+
+            &:hover{
+                background: $green;
+            }
+            &:hover i{
+                color: $white;
+                transform: rotate(360deg);
+            }
+
+            i{
+                color: $black;
+                font-size: 1.3rem;
+            }
+        }
+    }
+}
+header.head.box-shadow{
+    box-shadow: $box-shadow;
+}
+
+// Home Section CSS
+section.home{
+    .home-slide{
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        height: 100vh;
+
+        .home-text{
+            flex: 1 1 42rem;
+
+            span{
+                margin: 1rem 0;
+                display: block;
+                font-size: 2.2rem;
+                color: $green;
+                font-weight: 600;
+            }
+            h1{
+                font-size: 6rem;
+                margin-top: -1rem;
+                font-weight: 600;
+                color: $black;
+            }
+            p{
+                font-size: 1.8rem;
+                line-height: 1.4;
+                margin: 1rem 0.3rem;
+                color: $light-color;
+            }
+            .btn{
+                @include btn(.8rem 2.8rem);
+            }
+        }
+        .home-image{
+            flex: 1 1 42rem;
+
+            img{
+                width: 85%;
+            }
+        }
+    }
+}
+.swiper-pagination{
+    padding: 3rem;
+}
+
+// Dishes Section CSS
+section.dishes{
+    background: $light-bg;
+    margin-top: -4rem;
+
+    .dish-container{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
+        margin-top: 1rem;
+        gap: 1.5rem;
+
+        .dish{
+            background: $white;
+            padding: 1.5rem;
+            border-radius: .4rem;
+            box-shadow: $box-shadow;
+            position: relative;
+
+            &:hover .poper{
+                transform: scale(1);
+            }
+            h3{
+                text-align: center;
+                margin: .5rem 0;
+                color: $black;
+                font-size: 2.5rem;
+                font-weight: 600;
+            }
+            .stars{
+                text-align: center;
+                margin: .8rem 0;
+
+                i{
+                    font-size: 1.8rem;
+                    color: $green;
+                }
+            }
+            .dish-flex{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: .8rem 1rem;
+
+                span{
+                    font-size: 2.3rem;
+                    color: $green;
+                }
+                .btn{
+                    @include btn(.4rem 2rem);
+                    font-size: 1.8rem;
+                }
+            }
+            img{
+                width: 100%;
+                height: 66%;
+            }
+            .poper{
+                position: absolute;
+                top: 5%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 90%;
+                transform-origin: top;
+                transform: scale(0);
+
+                .lft{
+                    background: $light-bg;
+                    border-radius: 50%;
+                    padding: .8rem .8rem;
+                    cursor: pointer;
+
+                    &:hover{
+                        background: green;
+                    }
+                    &:hover i{
+                        color: white;
+                    }
+                    i{
+                        font-size: 2rem;
+                        color: $black;
+                    }
+                }
+                .rgt{
+                    background: $light-bg;
+                    border-radius: 50%;
+                    padding: .8rem .8rem;
+                    cursor: pointer;
+
+                    &:hover{
+                        background: green;
+                    }
+                    &:hover i{
+                        color: white;
+                    }
+                    i{
+                        font-size: 2rem;
+                        color: $black;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// About Section CSS
+section.about{
+
+    .about-container{
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+
+        .about-img{
+            flex: 1 1 42rem;
+
+            img{
+                width: 100%;
+            }
+        }
+        .about-text{
+            flex: 1 1 42rem;
+
+            h1{
+                font-size: 4.5rem;
+                color: $black;
+            }
+            p.topper{
+                line-height: 1.8;
+                font-size: 1.3rem;
+                color: $light-color;
+                margin: 1rem 0;
+            }
+            p.botter{
+                color: $light-color;
+                font-size: 1.3rem;
+                line-height: 1.8;
+            }
+            .stats-container{
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+
+                .first,
+                .second,
+                .third{
+                    font-size: 1.5rem;
+                    border-radius: 0.3rem;
+                    background: #eee;
+                    padding: 1rem 1rem;
+                    width: 77%;
+                    color: $black;
+                    margin: 1.5rem 0;
+
+                    i{
+                        color: $green;
+                        margin-right: .4rem;
+                    }
+                }
+            }
+            button.btn{
+                @include btn(.8rem 2.2rem)
+            }
+        }
+    }
+}
+
+// Menu Section CSS
+section.menu{
+    background: $light-bg;
+
+    .special-container{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+        margin-top: 1rem;
+        gap: 1rem;
+
+        .special{
+            padding: 1.5rem;
+            border-radius: .3rem;
+            background: $white;
+            position: relative;
+            box-shadow: $box-shadow;
+
+            img{
+                width: 100%;
+                height: 55%;
+                border-radius: .5rem;
+            }
+            .love{
+                position: absolute;
+                padding: 1.2rem 1.2rem;
+                background: $white;
+                border-radius: 50%;
+                top: 6%; right: 3rem;
+                cursor: pointer;
+
+                &:hover{
+                    background: $green;
+                }
+                &:hover  i{
+                    color: $white;
+                }
+
+                i{
+                    color: $black;
+                    font-size: 1.8rem;
+                }
+            }
+            .stars-item{
+                margin: 1rem 0;
+
+                i{
+                    font-size: 1.8rem;
+                    color: $green;
+                }
+            }
+            h3{
+                font-size: 2.3rem;
+                color: $black;
+            }
+            p{
+                font-size: 1.3rem;
+                line-height: 1.8;
+                color: $light-color;
+            }
+            button.btn{
+                @include btn(0.8rem 2.8rem);
+                margin: 1rem .2rem;
+            }
+            span{
+                font-size: 2.5rem;
+                color: $green;
+                margin-left: .5rem;
+            }
+        }
+    }
+}
+
+// Review Section CSS
+section.review{
+    .review-container{
+        margin-top: 1.5rem;
+
+        .review-wrapper{
+
+            .review{
+                width: 29%;
+                padding: 1.5rem;
+                border-radius: .6rem;
+                box-shadow: $box-shadow;
+                margin: 1.5rem 0;
+                padding: 0 .3rem;
+
+                .flexer{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: .5rem 1rem;
+
+                    .icon{
+                        display: flex;
+                        align-items: center;
+                        gap: .5rem;
+
+                        img{
+                            border-radius: 50%;
+                            width: 25%;
+                        }
+                        h4{
+                            font-size: 1.8rem;
+                            color: $black;
+                            margin-bottom: .3rem;
+                        }
+                        span{
+                            display: block;
+
+                            i{
+                                font-size: 1.3rem;
+                                color: $green;
+                            }
+                        }
+                    }
+                    .quote{
+
+                        i{
+                            font-size: 4rem;
+                            color: $light-bg;
+                        }
+                    }
+                }
+                p{
+                    font-size: 1.3rem;
+                    line-height: 1.8;
+                    color: $light-color;
+                    margin: .5rem 1rem;
+                }
+            }
+        }
+    }
+}
+
+// Order Section CSS
+section.order{
+    background: $light-bg;
+
+    .main-form{
+        margin: 1rem 0;
+        button.btn{
+            display: block;
+            @include btn(1rem 2.8rem);
+            margin: 1rem auto;
+        }
+        .form-container{
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            background: $white;
+            box-shadow: $box-shadow;
+            border-radius: .6rem;
+            padding: 1.5rem;
+            gap: 1rem;
+            width: 70vw;
+            margin: auto;
+    
+            .L-form{
+                flex: 1 1 42rem;
+                .form{
+                    margin: 1rem 0;
+                    label{
+                        font-size: 1.8rem;
+                    }
+                    input{
+                        display: block;
+                        margin: .5rem 0;
+                        padding: .5rem 1rem;
+                        width: 100%;
+                        border-radius: .3rem;
+                        background: $light-bg;
+                        color: $black;
+                        border: .2rem solid $light-bg;
+    
+                        &:focus{
+                            border: .2rem solid $green;
+                        }
+                    }
+                    textarea#add{
+                        height: 30vh;
+                        resize: none;
+                        display: block;
+                        width: 100%;
+                        border-radius: .3rem;
+                        background: $light-bg;
+                        color: $black;
+                        border: .2rem solid $light-bg;
+                        margin: .5rem 0;
+                        padding: .5rem 1rem;
+    
+                        &:focus{
+                            border: .2rem solid $green;
+                        }
+                    }
+                }
+            }
+            .R-form{
+                flex: 1 1 42rem;
+                .form{
+                    margin: 1.5rem 0;
+                    label{
+                        font-size: 1.8rem;
+                    }
+                    input{
+                        display: block;
+                        margin: .5rem 0;
+                        padding: .5rem 1rem;
+                        width: 100%;
+                        border-radius: .3rem;
+                        background: $light-bg;
+                        color: $black;
+                        border: .2rem solid $light-bg;
+    
+                        &:focus{
+                            border: .2rem solid $green;
+                        }
+                    }
+                    input::-webkit-outer-spin-button,
+                    input::-webkit-inner-spin-button {
+                      -webkit-appearance: none;
+                      margin: 0;
+                    }
+                    textarea#mess{
+                        height: 30vh;
+                        resize: none;
+                        display: block;
+                        width: 100%;
+                        border-radius: .3rem;
+                        background: $light-bg;
+                        color: $black;
+                        border: .2rem solid $light-bg;
+                        margin: .5rem 0;
+                        padding: .5rem 1rem;
+    
+                        &:focus{
+                            border: .2rem solid $green;
+                        }
+                    }
+                }
+            }
+            button.btn{
+                display: block;
+            }
+        }
+    }
+
+}
+
+
+// Footer Section
+section.footer{
+
+    .footer-container{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
+
+        .foot1,
+        .foot2,
+        .foot3,
+        .foot4{
+
+            h2{
+                font-size: 2.5rem;
+                color: $black;
+            }
+            span,
+            a{
+                display: block;
+                margin: 1.5rem 0;
+                font-size: 1.5rem;
+                color: $light-color;
+                cursor: pointer;
+
+                &:hover{
+                    color: $green;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+    .credit{
+        margin: 1rem 0;
+        text-align: center;
+        font-size: 3.5rem;
+        font-weight: 300;
+
+        span{
+            color: $green;
+        }
+    }
+}
+
+// Loader Section CSS
+.loader-container{
+    position: fixed;
+    left: 0; top: 0;
+    background: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    z-index: 10000000;
+
+    img{
+        width: 35rem;
+    }
+}
+.loader-container.fade-out{
+    top: 110%;
+    opacity: 0;
+}
+
+
+
+// Media Queries
+@media (max-width: 991px){
+    html{
+        font-size: 58%;
+    }
+    header{
+        padding: 1rem;
+    }
+    section{
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 768px){
+    header.head .nav-items .menu-bar{
+        display: block;
+    }
+    .navbar{
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        border-top: .2rem solid rgba(0,0,0,.1);
+        margin: 1.5rem;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        background: $white;
+        padding: 1rem 0;
+
+        a{
+            display: block;
+            background: #eee;
+            border-radius: .3rem;
+            margin: 1rem 0;
+
+            &:nth-child(1){
+                margin-top: .5rem;
+            }
+        }
+    }
+}
+.navbar.active{
+    clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+}
+
+@media (max-width: 450px) {
+    section.home .home-container .swiper-pagination{
+        display: none;
+    }
+    section.home .home-slide .home-text h1 {
+        font-size: 5rem;
+    }
+    section.home .home-slide .home-text span{
+        margin-top: 8rem;
+    }
+    section.home .home-slide .home-image img{
+        width: 72%;
+    }
+    section.dishes .dish-container .dish img{
+        height: 63%;
+        object-fit: cover;
+    }
+}
